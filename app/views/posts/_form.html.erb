@@ -1,13 +1,4 @@
-<% if @post.errors.any? %>
-  <div class="alert alert-error">
-    <h5> You have <%= "#{pluralize(@post.errors.count, "error")}" %></h5>
-    <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= "#{msg}" %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= render 'shared/errors', obj: @post %>
 
 <div class='well'>
   <%= form_for @post do |f| %>
@@ -25,6 +16,11 @@
       <%= f.label :description %>
       <%= f.text_area :description, rows: 5 %>
     </div>
+
+    <div class='control-group'>
+      <%= collection_check_boxes(:post, :category_ids, Category.all, :id, :name) %>
+    </div>  
+
     <%= f.submit class: "btn btn-primary" %>
   <% end %> 
-</div>
+

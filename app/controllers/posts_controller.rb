@@ -7,6 +7,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comment = @post.comments.new
   end
 
   def new
@@ -14,8 +15,17 @@ class PostsController < ApplicationController
   end
 
   def create
+
     @post = Post.new(post_params)
     @post.creator = User.first
+
+    @post.categories = []
+
+    params[:post][:category_ids].each do |id| 
+      if id.to_i != 0
+        @post.categories << Category.find(id.to_i)
+      end
+    end
 
     if @post.save
       flash[:notice] = "Your post was created!"
@@ -30,6 +40,14 @@ class PostsController < ApplicationController
   
   def update
 
+    @post.categories = []
+
+    params[:post][:category_ids].each do |id| 
+      if id.to_i != 0
+        @post.categories << Category.find(id.to_i)
+      end
+    end
+
     if @post.update(post_params)
       flash[:notice] = "Your post has been edited!"
       redirect_to posts_path(@post)
@@ -41,7 +59,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit!
+    params.require(:post).permit(:url, :title, :description, :category_ids)
   end
 
   def set_post

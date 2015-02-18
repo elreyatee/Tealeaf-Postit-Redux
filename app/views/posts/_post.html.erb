@@ -3,7 +3,7 @@
     <% post.categories.each do |category| %>
       <%= render '/categories/category', category: category %>
     <% end %> 
-    <h4><%= link_to post.title, edit_post_path(post) %></h4> 
+    <h4><%= link_to post.title, fix_url(post.url) %></h4> 
     <p><%= post.description %></p>
     <p>
       <span class='quiet'>posted by</span> <%= post.creator.username %>

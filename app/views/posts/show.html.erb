@@ -1,19 +1,40 @@
 <p class='pull-right'>
-  [<%= link_to('edit this post', edit_post_path(@post)) %>]
+  [<%= link_to 'edit this post', edit_post_path(@post) %>]
 </p>
 
 <p>
-	<% @post.categories.each do |category| %>
-		<span class='badge'><%= category.name %></span>
-	<% end %>
+  <%= render @post.categories %>
 </p>
-
-<p class='lead'>
-	<%= @post.title %>
-	<hr/>
-</p>
+  
+<%= render 'shared/content_title', title: @post.title %>
 
 <p>
-	<%= @post.description %>
+<%= @post.description %>
 </p>
 <hr/>
+
+<%= render 'shared/errors', obj: @comment %>
+
+<%= form_for [@post, @comment] do |f| %>
+  <div class='control-group'>
+    <%= f.label :body, "Leave a comment" %>
+    <%= f.text_area :body, rows: 3, class: 'span4' %>
+    <br/>
+  </div>
+  <%= f.submit "Create comment", class: "btn btn-primary" %>
+<% end %>
+
+<h5>Comments:</h5>
+
+<% @post.comments.each do |comment| %>
+  <% if !comment.body.nil? %>
+    <div class='span8 well'>
+      <em>"<%= comment.body %>"</em>
+      <br/>
+        <span class='quiet'>by</span> <%= comment.creator.username %><small> at <%= comment.created_at %></small>
+    </div>
+  <% end %>
+<% end %>
+    
+
+
