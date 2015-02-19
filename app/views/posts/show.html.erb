@@ -31,7 +31,7 @@
     <div class='span8 well'>
       <em>"<%= comment.body %>"</em>
       <br/>
-        <span class='quiet'>by</span> <%= comment.creator.username %><small> at <%= comment.created_at %></small>
+        <span class='quiet'>by</span> <%= comment.creator.username %><small> at <%= fix_date(comment.created_at) %></small>
     </div>
   <% end %>
 <% end %>
