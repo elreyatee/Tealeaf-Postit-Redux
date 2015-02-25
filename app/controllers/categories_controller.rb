@@ -1,10 +1,12 @@
 class CategoriesController < ApplicationController
-  
+
+  before_action :require_user, only: [:new, :create]
+
   def new
     @category = Category.new
   end
 
-  def create 
+  def create
     @category = Category.new(params.require(:category).permit(:name))
 
     if @category.save
@@ -12,7 +14,7 @@ class CategoriesController < ApplicationController
       redirect_to root_path
     else
       render :new
-    end 
+    end
   end
 
   def show
