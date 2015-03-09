@@ -4,6 +4,9 @@ module ApplicationHelper
   end
 
   def fix_date(date)
-    date.getlocal.strftime("%m/%d/%Y at %l:%M%P %Z")
+    if logged_in? and !current_user.time_zone.blank?
+      date = date.in_time_zone(current_user.time_zone)
+    end
+    date.strftime("%m/%d/%Y at %l:%M%P %Z")
   end
 end

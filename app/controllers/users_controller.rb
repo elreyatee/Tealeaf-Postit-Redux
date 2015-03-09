@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.permission = "user"
 
     if @user.save
       session[:user_id] = @user.id
@@ -24,6 +25,7 @@ class UsersController < ApplicationController
   def edit; end
 
   def update
+
     if @user.update(user_params)
       flash[:notice] = 'Your profile was updated'
       redirect_to user_path(@user)
@@ -35,7 +37,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:username, :password, :time_zone)
   end
 
   def set_user
