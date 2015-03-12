@@ -10,6 +10,11 @@ class PostsController < ApplicationController
 
   def show
     @comment = @post.comments.new
+
+    respond_to do |format|
+      format.html
+      format.json {render json: @post}
+    end
   end
 
   def new
