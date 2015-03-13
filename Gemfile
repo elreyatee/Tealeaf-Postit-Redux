@@ -15,7 +15,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'voteable_ellery_mar', '=0.0.0'
-gem 'sluggable_ellery_mar', '=0.0.0'
+gem 'sluggable_ellery_mar', '~> 0.0.0'
 
 group :doc do
   gem 'sdoc', require: false
