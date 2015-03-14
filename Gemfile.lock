@@ -146,7 +146,7 @@ DEPENDENCIES
   rails_12factor
   sass-rails (~> 4.0.0)
   sdoc
-  sluggable_ellery_mar (= 0.0.0)
+  sluggable_ellery_mar (~> 0.0.0)
   sqlite3
   turbolinks
   twilio-ruby

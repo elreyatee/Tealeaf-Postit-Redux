@@ -3,6 +3,7 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 require 'voteable'
 require 'sluggable_ellery_mar'
+require 'twilio-ruby'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
